@@ -1,0 +1,16 @@
+version: '2'
+services:
+  example:
+    build: ./example
+    image: example:latest
+    volumes:
+      - ../packages:/usr/src/app/packages
+      - ${PWD}:/work/
+    working_dir: /work/
+    environment:
+      - PACKAGE=example
+
+  protobuf:
+    build: ./protobuf
+    volumes:
+      - ../packages:/usr/src/app/packages
