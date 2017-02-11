@@ -1,0 +1,13 @@
+# packaging
+.eggs
+*.egg-info
+
+# python
+*.py[coxd]
+__pycache__
+
+# editor
+*.sw[op]
+
+# ipython notebooks
+.ipynb_checkpoints
