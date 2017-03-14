@@ -1,5 +1,4 @@
-# Example python project
+# dSearch
 
-Starting point for Python 3 projects.  Defines a few appropriate containers for
-development, as well as an example python package with tests and a protobuf
-definition.
+dSearch is a hasher for high-dimensional vectors, suitable for their preparation
+for indexing by a text-based search engine.

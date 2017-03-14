@@ -1,2 +1,0 @@
-protobuf3==0.2.1
-simple-settings==0.10

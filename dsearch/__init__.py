@@ -1,4 +1,4 @@
-__all__ = ['runner']
+__all__ = ['hasher']
 
 # this __init_.py provides two important objects: settings and logger
 #   settings are in default.py, and are overridden and added to by a
@@ -11,7 +11,7 @@ __all__ = ['runner']
 ###############################################################################
 
 # default settings module
-default_settings = 'default'
+default_settings = 'settings'
 
 # Everything below this line can be used without modification
 settings_module = '.'.join([__package__, default_settings])

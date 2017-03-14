@@ -1,4 +1,4 @@
-''' example settings file
+''' settings file
 '''
 
 LOGGING = {
@@ -29,5 +29,3 @@ LOGGING = {
         },
     }
 }
-
-NAME = "example-name"

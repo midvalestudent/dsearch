@@ -10,16 +10,17 @@ with open('LICENSE') as f:
     license = f.read()
 
 setup(
-    name='example',
-    version='0.0.1',
-    description='Example python project with settings, logging, and more',
+    name='dsearch',
+    version='0.1.0',
+    description='A hasher for preparing high-dimensional vectors for search',
     long_description=readme,
     author='Roger Donaldson',
     author_email='roger.d.donaldson@gmail.com',
     license=license,
     packages=find_packages(exclude=('tests')),
     install_requires=[
-        'simple-settings',
+        numpy==1.9.2,
+        scipy==0.18.1,
     ],
     test_suite='nose.collector',
     tests_require=['nose'],

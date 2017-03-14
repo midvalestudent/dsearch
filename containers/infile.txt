@@ -1,3 +1,0 @@
-This is the first line
-This is the second input line
-Here is line 3
