@@ -19,8 +19,7 @@ setup(
     license=license,
     packages=find_packages(exclude=('tests')),
     install_requires=[
-        numpy==1.9.2,
-        scipy==0.18.1,
+        'numpy==1.9.2',
     ],
     test_suite='nose.collector',
     tests_require=['nose'],

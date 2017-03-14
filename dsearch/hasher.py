@@ -4,10 +4,6 @@ import string
 from collections import defaultdict
 
 import numpy as np
-try:
-    from pyfftw.interfaces.scipy_fftpack import dct
-except ImportError:
-    from scipy.fft import dct
 
 
 def symbol_encode(n, symbols):
@@ -74,7 +70,24 @@ class GaussianHasher(ThresholdingHasher):
 
 
 class FourierHasher(ThresholdingHasher):
-    def __init__(self, d, m, h, ord=None, random_state=np.random.RandomState(42)):
+    ''' Approximate the random Gaussian mapping by a sparse operation followed
+        by a Fourier transform.
+
+        The vector is duplicated m/d times, and each element of the duplicated
+        vector is multiplied randomly by +1 or -1.  These duplicated vectors are
+        concatenated and then their DFT is returned.  This entire operation
+        approximates multiplication of the vector by a standard normal Gaussian 
+        m x d matrix.
+
+        Note that a dct implementation must be provided to the constructor.  Two
+        options are:
+
+            * scipy.fft.dct
+            * pyfftw.interfaces.scipy_fftpack.dct
+
+        See: https://arxiv.org/abs/1507.05929
+    '''
+    def __init__(self, d, m, h, ord=None, dct=None, random_state=np.random.RandomState(42)):
         if m%d:
             raise ValueError("m must be an integer multiple of d")
 
@@ -82,5 +95,9 @@ class FourierHasher(ThresholdingHasher):
         self.signs = random_state.choice([-1.0, 1.0], size=(m/d, d))
         self.sqrt_d = np.sqrt(d)
 
+        self.dct = dct
+        if not self.dct:
+            raise NotImplementedError("a dct implmentation must be provided")
+
     def transform(self, vector):
-        return dct(np.multiply(self.signs, vector).flatten(), type=2, norm='ortho')*self.sqrt_d
+        return self.dct(np.multiply(self.signs, vector).flatten(), type=2, norm='ortho')*self.sqrt_d
